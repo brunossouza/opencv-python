@@ -1,6 +1,6 @@
 import cv2
 
-image_path = 'images/img.jpg'
+image_path = '../../dados/images/img.jpg'
 
 img = cv2.imread(image_path)
 
