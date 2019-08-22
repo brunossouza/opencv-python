@@ -11,7 +11,7 @@ frame_height =int( cap.get( cv2.CAP_PROP_FRAME_HEIGHT))
 
 fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
 
-out = cv2.VideoWriter(video_path_out, fourcc, 60.0, (1280,720))
+out = cv2.VideoWriter(video_path_out, fourcc, 5.0, (frame_width,frame_height))
 
 ret, frame1 = cap.read()
 ret, frame2 = cap.read()
@@ -31,11 +31,10 @@ while cap.isOpened():
         if cv2.contourArea(contour) < 5000:
             continue
         cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        cv2.putText(frame1, "Status: {}".format('Movimento'), (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
-                    1, (0, 0, 255), 3)
+        cv2.putText(frame1, "Status: {}".format('Movimento'), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
     #cv2.drawContours(frame1, contours, -1, (0, 255, 0), 2)
 
-    image = cv2.resize(frame1, (1280,720))
+    image = cv2.resize(frame1, (frame_width,frame_height))
     out.write(image)
     cv2.imshow("feed", frame1)
     frame1 = frame2
